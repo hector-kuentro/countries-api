@@ -1,7 +1,7 @@
 import data from '../../../data.json'
 import { NextApiRequest, NextApiResponse } from 'next'
 
-export async function getCountryByName(name: string) {
+async function getCountryByName(name: string) {
     try {
         name = name.toLowerCase()
         let borders: Array<string | undefined> = []

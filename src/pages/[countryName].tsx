@@ -16,15 +16,21 @@ export async function getStaticProps({ params }: GetStaticPropsContext): Promise
 
     const country = data.find(item => item.name.toLowerCase() === countryName)
 
-    if(!country) return {
+    if (!country) return {
         props: {
             country: {},
-            notFound: true, 
+            notFound: true,
             countryName: param
         }
     }
 
-    return { props: { country } }
+    let borders: Array<string> = []
+    country.borders?.forEach( border => {
+        const item = data.find(item => item.alpha3Code === border)
+        if(item) borders.push(item.name)
+    })
+
+    return { props: { country: {...country, borders} } }
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
