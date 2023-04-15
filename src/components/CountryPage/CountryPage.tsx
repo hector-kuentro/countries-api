@@ -19,9 +19,9 @@ interface Props {
 
 const CountryPage: FC<Props> = ({ country, notFound, countryName }) => {
 
-    if (notFound) return <CountryNotFound countryName={countryName} />
-
     const router = useRouter()
+
+    if (notFound) return <CountryNotFound countryName={countryName} />
 
     const domains = country.topLevelDomain || []
     const borders = country.borders || []
