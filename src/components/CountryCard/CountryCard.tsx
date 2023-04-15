@@ -15,6 +15,7 @@ const CountryCard: FC<Props> = ({ country }) => {
         <Link
             href={`/${country.name}`}
             className={styles.card}
+            prefetch={false}
         >
             <section
                 className={styles.imageContainer}

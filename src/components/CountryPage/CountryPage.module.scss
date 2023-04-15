@@ -73,7 +73,7 @@
         gap: 8px;
         font-weight: 300;
 
-        span {
+        span, a {
             background-color: var(--bgAlt);
             border: 1px solid var(--chipsBorder);
             font-size: 0.875rem;
@@ -81,6 +81,12 @@
             border-radius: 6px;
             color: var(--gray);
             box-shadow: var(--cardShadow);
+            cursor: pointer;
+            transition: .3s ease;
+
+            &:hover {
+                background-color: var(--buttonHover);
+            }
         }
     }
 }

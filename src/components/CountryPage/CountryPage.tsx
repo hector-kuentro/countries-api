@@ -8,6 +8,7 @@ import Button from '../Buttons/Button'
 import { useRouter } from 'next/navigation'
 import Image from '../Image/Image'
 import { getFormattedNumber } from '@/helpers/utils'
+import Link from 'next/link'
 
 interface Props {
     country: Country
@@ -25,12 +26,6 @@ const CountryPage: FC<Props> = ({ country }) => {
     function handleGoBack() {
         router.back()
     }
-
-    if (!country) return (
-        <h1>
-            Country not found
-        </h1>
-    )
 
     return (
         <>
@@ -85,9 +80,12 @@ const CountryPage: FC<Props> = ({ country }) => {
                         <div className={styles.borders}>
                             <span>Border Countries:</span>
                             <div>{borders.map(border => (
-                                <span key={border}>
+                                <Link
+                                    href={`/${border}`}
+                                    key={border}
+                                >
                                     {border}
-                                </span>
+                                </Link>
                             ))}
                             </div>
                         </div>

@@ -4,8 +4,16 @@ import data from '../../../../data.json'
 async function getCountryByName(name: string) {
     try {
         name = name.toLowerCase()
+        let borders: Array<string | undefined> = []
         const country = await data.find(item => item.name.toLowerCase() === name)
-        return country
+        
+        if(!country) throw new Error('Country not found')
+
+        country?.borders?.forEach(async border => {
+            const item = await data.find(item => item.alpha3Code === border)
+            borders.push(item?.name)
+        })
+        return { ...country, borders }
     } catch (err) {
         throw new Error('Country not found')
     }

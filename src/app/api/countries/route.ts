@@ -24,7 +24,6 @@ async function searchCountries({ searchValue, region }: SearchParams) {
 export async function GET(request: NextRequest) {
   const searchValue = request.nextUrl.searchParams.get('s')
   const region = request.nextUrl.searchParams.get('r')
-  console.log('Query: ', request.nextUrl.searchParams)
 
   if (searchValue || region) {
     const countries = await searchCountries({
