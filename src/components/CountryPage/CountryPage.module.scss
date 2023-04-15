@@ -1,0 +1,165 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: calc(80px + 2rem) 6rem 3rem;
+
+    >button {
+        align-self: flex-start;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+
+    >img {
+        width: 40%;
+        height: fit-content;
+        max-width: 400px;
+        max-height: 300px;
+        aspect-ratio: 3/2;
+    }
+}
+
+.countryInfo {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h1 {
+        font-weight: 800;
+    }
+}
+
+.countryDetails {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-height: 160px;
+    font-size: 0.875rem;
+
+    p {
+        font-weight: 600;
+
+        span {
+            font-weight: 300;
+            color: var(--gray);
+
+            &:first-child {
+                margin-left: 0.5ch;
+            }
+        }
+    }
+}
+
+.borders {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+
+    >span {
+        font-size: 0.875rem;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    >div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-weight: 300;
+
+        span {
+            background-color: var(--bgAlt);
+            border: 1px solid var(--chipsBorder);
+            font-size: 0.875rem;
+            padding: 4px 1rem;
+            border-radius: 6px;
+            color: var(--gray);
+            box-shadow: var(--cardShadow);
+        }
+    }
+}
+
+.currencies {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.5ch;
+
+    >span {
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    >div {
+        color: var(--gray);
+        >*:not(:first-child) {
+            &::before {
+                content: ', ';
+            }
+        }
+    }
+}
+
+.languages {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.5ch;
+
+    >span {
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+
+    >div {
+        color: var(--gray);
+
+        >*:not(:first-child) {
+            &::before {
+                content: ', ';
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .main {
+        padding: calc(80px + 2rem) 3rem 2rem;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .main {
+        padding: calc(80px + 2rem) 2rem 2rem;
+    }
+
+    .container {
+        flex-direction: column;
+        gap: 3rem;
+
+        >img {
+            width: 100%;
+            align-self: center;
+        }
+    }
+
+    .countryDetails {
+        flex-wrap: nowrap;
+        max-height: unset;
+    }
+
+    .borders {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        padding: calc(80px + 2rem) 1rem 2rem;
+    }
+}

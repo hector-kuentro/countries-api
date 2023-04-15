@@ -1,0 +1,32 @@
+@mixin button {
+    appearance: none;
+    border: none;
+    display: flex;
+    gap: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: .3s ease;
+    color: var(--black);
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--buttonHover);
+    }
+
+    svg {
+        height: 1rem;
+    }
+}
+
+.filledButton {
+    @include button;
+    padding: 8px 2rem;
+    background-color: var(--bgAlt);
+    box-shadow: var(--cardShadow);
+}
+
+.textButton {
+    @include button;
+    background-color: transparent;
+    padding: 8px 1rem;
+}

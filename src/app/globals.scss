@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+:root {
+  // Colors
+  --bgMain: #FAFAFA;
+  --bgAlt: hsl(0, 0%, 100%);
+  --black: #262626;
+  --white: hsl(0, 0%, 100%);
+  --gray: hsl(0, 0%, 52%);
+  --grayLight: hsl(0, 0%, 86%);
+  --chipsBorder: hsl(0, 0%, 86%);
+  --buttonHover: rgba(0,0,0,0.04);
+
+  --cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  --cardShadowDark: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.dark {
+  --bgMain: hsl(207, 26%, 17%);
+  --bgAlt: hsl(209, 23%, 22%);
+  --black: hsl(0, 0%, 100%);
+  --white: #262626;
+  --gray: hsl(0, 0%, 52%);
+  --chipsBorder: none;
+  --buttonHover: rgba(0,0,0,0.2);
+  --grayLight: hsl(209, 23%, 22%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--black);
+  background: var(--bgMain);
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// @media (prefers-color-scheme: dark) {
+//   html {
+//     color-scheme: dark;
+//   }
+// }

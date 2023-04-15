@@ -1,0 +1,92 @@
+.text {
+    appearance: none;
+    border: none;
+    background-color: inherit;
+    color: var(--black);
+    width: 100%;
+    padding: 8px 0;
+
+    &::placeholder {
+        color: var(--black);
+        opacity: 0.75;
+    }
+}
+
+$selectBorderRadius: 8px;
+$selectBackgroundColor: var(--bgAlt);
+$selectShadow: var(--cardShadow);
+
+.select {
+    font-size: 0.875rem;
+    min-width: 230px;
+    position: relative;
+
+    >div {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        padding: 8px 3.5rem 8px 1rem;
+        background-color: $selectBackgroundColor;
+        box-shadow: $selectShadow;
+        border-radius: $selectBorderRadius;
+        min-height: 50px;
+        cursor: pointer;
+        transition: .3s ease;
+
+        &:hover {
+            background-color: var(--buttonHover);
+        }
+
+        >svg {
+            transition: .3s ease;
+            position: absolute;
+            inset: auto 1rem auto auto;
+            height: 1rem;
+        }
+
+        >span {
+            font-weight: 600;
+        }
+    }
+
+    >section {
+        position: absolute;
+        opacity: 0;
+        inset: calc(100% + 8px) 0 auto;
+        transition: .3s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background-color: $selectBackgroundColor;
+        padding: 8px;
+        border-radius: $selectBorderRadius;
+        box-shadow: $selectShadow;
+        z-index: 1;
+        pointer-events: none;
+        cursor: default;
+
+        option {
+            transition: .3s ease;
+            padding: 6px;
+            border-radius: 6px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--buttonHover);
+            }
+        }
+    }
+}
+
+.opened {
+
+    >div>svg {
+        transform: rotate(180deg);
+    }
+
+    >section {
+        opacity: 1;
+        pointer-events: unset;
+    }
+}
