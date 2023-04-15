@@ -3,6 +3,7 @@
 import { FC, useLayoutEffect, useRef, useState } from 'react'
 import CountryCard from '../CountryCard/CountryCard'
 import styles from './Countries.module.scss'
+import mainStyles from '../../pages/app.module.scss'
 import SearchBar from '../SearchBar/SearchBar'
 import Select from '../Inputs/Select'
 import { requestCountriesByRegion, requestSearchCountries } from '@/services/countries.service'
@@ -23,8 +24,8 @@ const Countries: FC<Props> = (props) => {
     const isScrollDone = useRef(false)
 
     useLayoutEffect(() => {
-        if(!isScrollDone.current){
-            window.scrollTo({top: lastScroll})
+        if (!isScrollDone.current) {
+            window.scrollTo({ top: lastScroll })
             isScrollDone.current = true
         }
 
@@ -46,28 +47,30 @@ const Countries: FC<Props> = (props) => {
     }
 
     return (
-        <div className={styles.container}>
-            <section className={styles.inputsContainer}>
-                <SearchBar
-                    onSearch={handleSearch}
-                    loading={loading}
-                />
-
-                <Select
-                    onChange={handleRegionChange}
-                    loading={filterLoading}
-                />
-            </section>
-
-            <section className={styles.list}>
-                {countries.map(country => (
-                    <CountryCard
-                        key={country.name}
-                        country={country}
+        <main className={mainStyles.main}>
+            <div className={styles.container}>
+                <section className={styles.inputsContainer}>
+                    <SearchBar
+                        onSearch={handleSearch}
+                        loading={loading}
                     />
-                ))}
-            </section>
-        </div>
+
+                    <Select
+                        onChange={handleRegionChange}
+                        loading={filterLoading}
+                    />
+                </section>
+
+                <section className={styles.list}>
+                    {countries.map(country => (
+                        <CountryCard
+                            key={country.name}
+                            country={country}
+                        />
+                    ))}
+                </section>
+            </div>
+        </main>
     )
 }
 

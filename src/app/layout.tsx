@@ -1,5 +1,5 @@
 import TopBar from '@/components/TopBar/TopBar'
-import './globals.scss'
+import '../styles/globals.scss'
 import ThemeContextProvider from '@/context/ThemeContext'
 import { Suspense } from 'react'
 import MainLoader from '@/components/Loaders/MainLoader'

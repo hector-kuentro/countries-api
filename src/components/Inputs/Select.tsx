@@ -7,7 +7,7 @@ import { useIntersectionObserver } from '@/hooks/hooks'
 import Loader from '../Loaders/Loader'
 
 const VALUES = [
-    'All', 'Africa', 'America',
+    'All', 'Africa', 'Americas',
     'Asia', 'Europe', 'Oceania'
 ]
 
@@ -33,12 +33,13 @@ const Select: FC<Props> = ({ onChange, loading }) => {
     }, [])
 
     function toggleMenu() {
+        if(loading) return
+        
         setOpen(prev => !prev)
         isOpened = !isOpened
     }
 
     function handleChange(e: MouseEvent<HTMLOptionElement>) {
-        console.log('event: ', e)
         setValue(e.target.value)
         onChange(e.target.value)
     }
@@ -55,15 +56,16 @@ const Select: FC<Props> = ({ onChange, loading }) => {
             className={clsx(styles.select, open && styles.opened)}
             onClick={toggleMenu}
             ref={observer}
+            aria-disabled={loading}
         >
             <div>
                 Filter by Region{value !== 'All' && ': '}
                 {value !== 'All' && <span>{value}</span>}
                 {loading
                     ? <Loader style={{
-                            position: 'absolute',
-                            inset: 'auto 1rem auto auto'
-                        }} />
+                        position: 'absolute',
+                        inset: 'auto 1rem auto auto'
+                    }} />
                     : <FontAwesomeIcon icon={faChevronDown} />
                 }
             </div>

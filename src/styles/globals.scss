@@ -5,6 +5,7 @@
   --bgMain: #FAFAFA;
   --bgAlt: hsl(0, 0%, 100%);
   --black: #262626;
+  --bgDisabled: rgba(0, 0, 0, 0.18);
   --white: hsl(0, 0%, 100%);
   --gray: hsl(0, 0%, 52%);
   --grayLight: hsl(0, 0%, 86%);
@@ -19,11 +20,12 @@
   --bgMain: hsl(207, 26%, 17%);
   --bgAlt: hsl(209, 23%, 22%);
   --black: hsl(0, 0%, 100%);
+  --bgDisabled: rgba(0, 0, 0, 0.3);
   --white: #262626;
   --gray: hsl(0, 0%, 52%);
   --chipsBorder: none;
   --buttonHover: rgba(0,0,0,0.2);
-  --grayLight: hsl(209, 23%, 22%);
+  --grayLight: hsl(209, 10%, 40%);
 }
 
 * {

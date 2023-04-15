@@ -21,6 +21,18 @@ $selectShadow: var(--cardShadow);
     min-width: 230px;
     position: relative;
 
+    &[aria-disabled=true] {
+        >div {
+            cursor: default;
+            background-color: var(--bgDisabled);
+            color: var(--gray);
+
+            &:hover {
+                background-color: var(--bgDisabled);
+            }
+        }
+    }
+
     >div {
         display: flex;
         align-items: center;

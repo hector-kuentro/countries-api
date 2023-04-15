@@ -10,7 +10,7 @@ interface Language {
 
 interface Country {
     name: string
-    topLevelDomain: string
+    topLevelDomain: Array<string>
     capital: string
     population: number
     region: string
