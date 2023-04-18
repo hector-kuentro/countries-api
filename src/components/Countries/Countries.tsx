@@ -112,7 +112,7 @@ const NoContent: FC<{ searchValue: string }> = ({ searchValue }) => {
     return (
         <div className={styles.noResults}>
             <FontAwesomeIcon icon={faQuestionCircle} />
-            <span>No results matches <span>"{searchValue}".</span></span>
+            <span>No results matches <span>&quot;{searchValue}&quot;.</span></span>
             <p>Please, try another search.</p>
         </div>
     )
