@@ -9,9 +9,10 @@ import Select from '../Inputs/Select'
 import { requestCountriesByRegion, requestSearchCountries } from '@/services/countries.service'
 import Button from '../Buttons/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { scrollTo } from '@/helpers/utils'
 import { useIntersectionObserver } from '@/hooks/hooks'
+import { isValidString } from '@/helpers/validations'
 
 interface Props {
     countries: CountriesList
@@ -22,9 +23,12 @@ let lastScroll = 0
 const Countries: FC<Props> = (props) => {
 
     const [countries, setCountries] = useState(props.countries)
-    // const [searchValue, setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState('')
     const [loading, setLoading] = useState(false)
     const [filterLoading, setFilterLoading] = useState(false)
+
+    const hasResults = countries.length > 0
+    const isSearch = isValidString(searchValue)
 
     const isScrollDone = useRef(false)
     const fabRef = useRef<HTMLButtonElement>(null)
@@ -46,6 +50,7 @@ const Countries: FC<Props> = (props) => {
 
     async function handleSearch(searchValue: string) {
         setLoading(true)
+        setSearchValue(searchValue)
         await requestSearchCountries(searchValue, setCountries)
         setLoading(false)
     }
@@ -75,6 +80,10 @@ const Countries: FC<Props> = (props) => {
                         />
                     </section>
 
+                    {isSearch && !hasResults &&
+                        <NoContent searchValue={searchValue} />
+                    }
+
                     <section className={styles.list}>
                         {countries.map(country => (
                             <CountryCard
@@ -96,6 +105,16 @@ const Countries: FC<Props> = (props) => {
                 <FontAwesomeIcon icon={faArrowUp} />
             </Button>
         </>
+    )
+}
+
+const NoContent: FC<{ searchValue: string }> = ({ searchValue }) => {
+    return (
+        <div className={styles.noResults}>
+            <FontAwesomeIcon icon={faQuestionCircle} />
+            <span>No results matches <span>"{searchValue}".</span></span>
+            <p>Please, try another search.</p>
+        </div>
     )
 }
 
