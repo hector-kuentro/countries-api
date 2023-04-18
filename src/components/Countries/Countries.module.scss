@@ -18,6 +18,32 @@
     grid-row-gap: 4rem;
 }
 
+.goUpButton {
+    position: fixed;
+    inset: auto 1rem 1rem auto;
+    background-color: var(--bgMainAlt);
+    box-shadow: var(--cardShadowDark);
+    padding: 8px;
+    height: 3rem;
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+
+    &:hover {
+        background-color: var(--buttonHoverAlt);
+    }
+
+    svg,img {
+        height: 1.5rem;
+    }
+}
+
+.goUpButtonVisible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: unset;
+}
+
 @media only screen and (max-width: 1400px) {
     .list {
         grid-template-columns: repeat(4, 1fr);

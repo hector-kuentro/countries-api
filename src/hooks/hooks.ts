@@ -62,23 +62,25 @@ interface UseIntersectionObserverParams {
 }
 
 export const useIntersectionObserver = ({ onEntering, onLeaving, disabled, options = {} }: UseIntersectionObserverParams) => {
+    const [isVisible, setIsVisible] = useState(false)
     const observer = useRef<any>()
     const ref = useCallback((node: any) => {
         if (disabled) return
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && onEntering) {
-                onEntering()
-                return
+            if (entries[0].isIntersecting) {
+                setIsVisible(true)
+                if (onEntering) onEntering()
             }
-            if (!entries[0].isIntersecting && onLeaving) {
-                onLeaving()
+            if (!entries[0].isIntersecting) {
+                setIsVisible(false)
+                if (onLeaving) onLeaving()
             }
         }, options)
         if (node) observer.current.observe(node)
     }, [disabled])
 
-    return ref
+    return { ref, isVisible }
 }
 
 export const useIsValidString = (value: string) => {

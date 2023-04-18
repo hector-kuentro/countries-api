@@ -1,19 +1,32 @@
 import clsx from 'clsx'
-import { ButtonHTMLAttributes, FC } from 'react'
+import { ButtonHTMLAttributes, ForwardRefRenderFunction, forwardRef } from 'react'
 import styles from './Buttons.module.scss'
 
-type Variants = 'text' | 'filled'
+type Variants = 'text' | 'filled' | 'icon'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: Variants
 }
 
-const Button: FC<Props> = ({ variant, ...props }) => {
+const Button: ForwardRefRenderFunction<HTMLButtonElement, Props> = ({ variant, ...props }, ref) => {
+
+    const {className, ...rest} = props
 
     if (variant === 'text') return (
         <button
-            className={clsx(styles.textButton, props.className)}
-            {...props}
+            className={clsx(styles.textButton, className)}
+            {...rest}
+            ref={ref}
+        >
+            {props.children}
+        </button>
+    )
+    
+    if (variant === 'icon') return (
+        <button
+            className={clsx(styles.iconButton, className)}
+            {...rest}
+            ref={ref}
         >
             {props.children}
         </button>
@@ -21,12 +34,13 @@ const Button: FC<Props> = ({ variant, ...props }) => {
 
     return (
         <button
-            className={clsx(styles.filledButton, props.className)}
-            {...props}
+            className={clsx(styles.filledButton, className)}
+            {...rest}
+            ref={ref}
         >
             {props.children}
         </button>
     )
 }
 
-export default Button
+export default forwardRef(Button)

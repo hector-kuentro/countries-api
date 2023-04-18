@@ -33,8 +33,8 @@ const Select: FC<Props> = ({ onChange, loading }) => {
     }, [])
 
     function toggleMenu() {
-        if(loading) return
-        
+        if (loading) return
+
         setOpen(prev => !prev)
         isOpened = !isOpened
     }
@@ -44,7 +44,7 @@ const Select: FC<Props> = ({ onChange, loading }) => {
         onChange(e.target.value)
     }
 
-    const observer = useIntersectionObserver({
+    const { ref: observer } = useIntersectionObserver({
         onLeaving: () => {
             setOpen(false)
             isOpened = false

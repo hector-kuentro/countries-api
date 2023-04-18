@@ -30,3 +30,13 @@
     background-color: transparent;
     padding: 8px 1rem;
 }
+
+.iconButton {
+    @include button;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-radius: 100%;
+    padding: 6px;
+    aspect-ratio: 1;
+}

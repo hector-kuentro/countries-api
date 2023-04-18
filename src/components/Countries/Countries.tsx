@@ -7,6 +7,11 @@ import mainStyles from '../../pages/app.module.scss'
 import SearchBar from '../SearchBar/SearchBar'
 import Select from '../Inputs/Select'
 import { requestCountriesByRegion, requestSearchCountries } from '@/services/countries.service'
+import Button from '../Buttons/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { scrollTo } from '@/helpers/utils'
+import { useIntersectionObserver } from '@/hooks/hooks'
 
 interface Props {
     countries: CountriesList
@@ -22,6 +27,11 @@ const Countries: FC<Props> = (props) => {
     const [filterLoading, setFilterLoading] = useState(false)
 
     const isScrollDone = useRef(false)
+    const fabRef = useRef<HTMLButtonElement>(null)
+    const { ref: inputsContainerRef } = useIntersectionObserver({
+        onEntering: () => fabRef.current?.classList.remove(styles.goUpButtonVisible),
+        onLeaving: () => fabRef.current?.classList.add(styles.goUpButtonVisible),
+    })
 
     useLayoutEffect(() => {
         if (!isScrollDone.current) {
@@ -47,30 +57,45 @@ const Countries: FC<Props> = (props) => {
     }
 
     return (
-        <main className={mainStyles.main}>
-            <div className={styles.container}>
-                <section className={styles.inputsContainer}>
-                    <SearchBar
-                        onSearch={handleSearch}
-                        loading={loading}
-                    />
-
-                    <Select
-                        onChange={handleRegionChange}
-                        loading={filterLoading}
-                    />
-                </section>
-
-                <section className={styles.list}>
-                    {countries.map(country => (
-                        <CountryCard
-                            key={country.name}
-                            country={country}
+        <>
+            <main className={mainStyles.main}>
+                <div className={styles.container}>
+                    <section
+                        className={styles.inputsContainer}
+                        ref={inputsContainerRef}
+                    >
+                        <SearchBar
+                            onSearch={handleSearch}
+                            loading={loading}
                         />
-                    ))}
-                </section>
-            </div>
-        </main>
+
+                        <Select
+                            onChange={handleRegionChange}
+                            loading={filterLoading}
+                        />
+                    </section>
+
+                    <section className={styles.list}>
+                        {countries.map(country => (
+                            <CountryCard
+                                key={country.name}
+                                country={country}
+                            />
+                        ))}
+                    </section>
+                </div>
+            </main>
+
+            <Button
+                variant='icon'
+                className={styles.goUpButton}
+                title='Go up'
+                onClick={() => scrollTo({ top: 0, behavior: 'smooth' })}
+                ref={fabRef}
+            >
+                <FontAwesomeIcon icon={faArrowUp} />
+            </Button>
+        </>
     )
 }
 

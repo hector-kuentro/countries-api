@@ -3,6 +3,7 @@
 :root {
   // Colors
   --bgMain: #FAFAFA;
+  --bgMainAlt: hsl(0, 0%, 86%);
   --bgAlt: hsl(0, 0%, 100%);
   --black: #262626;
   --bgDisabled: rgba(0, 0, 0, 0.18);
@@ -11,6 +12,7 @@
   --grayLight: hsl(0, 0%, 86%);
   --chipsBorder: hsl(0, 0%, 86%);
   --buttonHover: rgba(0,0,0,0.04);
+  --buttonHoverAlt: hsl(0, 0%, 78%);
 
   --cardShadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   --cardShadowDark: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
@@ -18,14 +20,16 @@
 
 .dark {
   --bgMain: hsl(207, 26%, 17%);
+  --bgMainAlt: hsl(207, 29%, 24%);
   --bgAlt: hsl(209, 23%, 22%);
   --black: hsl(0, 0%, 100%);
   --bgDisabled: rgba(0, 0, 0, 0.3);
   --white: #262626;
   --gray: hsl(0, 0%, 52%);
+  --grayLight: hsl(209, 10%, 40%);
   --chipsBorder: none;
   --buttonHover: rgba(0,0,0,0.2);
-  --grayLight: hsl(209, 10%, 40%);
+  --buttonHoverAlt: hsl(207, 50%, 12%);
 }
 
 * {
