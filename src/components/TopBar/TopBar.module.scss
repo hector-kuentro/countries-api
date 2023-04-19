@@ -8,10 +8,32 @@
     background-color: var(--bgAlt);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     z-index: 2;
-    
-    >h1 {
+
+    h1 {
         font-size: 1.5rem;
         font-weight: 800;
+        transition: .3s ease;
+        cursor: pointer;
+        position: relative;
+        line-height: 1.2;
+
+        &::before {
+            content: '';
+            position: absolute;
+            height: 0;
+            width: 100%;
+            inset: auto auto 0;
+            background-color: var(--black);
+            transition: .3s ease;
+            z-index: -1;
+        }
+
+        &:hover {
+            color: var(--white);
+            &::before {
+                height: 100%;
+            }
+        }
     }
 
     >button {

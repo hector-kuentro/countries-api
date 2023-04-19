@@ -8,6 +8,7 @@ import { faMoon as faMoonRegular } from '@fortawesome/free-regular-svg-icons'
 import Button from '../Buttons/Button'
 import { useThemeContext } from '@/context/ThemeContext'
 import { Theme } from '@/context/theme.types'
+import Link from 'next/link'
 
 const TopBar: FC = () => {
 
@@ -15,7 +16,9 @@ const TopBar: FC = () => {
 
     return (
         <div className={styles.topBar}>
-            <h1>Where in the world?</h1>
+            <Link href='/'>
+                <h1>Where in the world?</h1>
+            </Link>
 
             <Button
                 variant='text'
